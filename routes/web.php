@@ -26,6 +26,18 @@ Route::get('/users', function () {
     echo User::all();
 });
 
+
+Route::get('/users/{id}/delete', function($id) {
+    if (User::find($id)){
+        User::destroy($id);
+        echo "delete success";
+    }else{
+        echo "deltete fail";
+    }
+    
+
+});
+
 //將用戶重新導向至OAuth提供程序
 Route::get('login/github', 'socialGithub@redirectToProvider');
 
