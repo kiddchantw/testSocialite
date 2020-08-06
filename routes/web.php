@@ -20,3 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//將用戶重新導向至OAuth提供程序
+Route::get('login/github', 'socialGithub@redirectToProvider');
+
+//在身份驗證之後接收來自提供程序的回調。
+Route::get('login/github/callback', 'socialGithub@handleProviderCallback');
