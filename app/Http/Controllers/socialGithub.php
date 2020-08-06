@@ -12,6 +12,7 @@ class socialGithub extends Controller
     //
 
     /**
+     * edirect the user to the GitHub authentication page.
      * 將用戶重定向到GitHub身份驗證頁面。
      *
      * @return \Illuminate\Http\Response
@@ -22,6 +23,7 @@ class socialGithub extends Controller
     }
 
     /**
+     * Obtain the user information from GitHub.
      * 從GitHub獲取用戶信息。
      *
      * @return \Illuminate\Http\Response
@@ -32,7 +34,7 @@ class socialGithub extends Controller
 
         // $user->token;
 
-        dd($user);
+        dd($user->email);
 
     }
 }
