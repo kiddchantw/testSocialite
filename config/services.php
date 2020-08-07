@@ -38,5 +38,11 @@ return [
         'client_secret' => '62c16fb8362fa3dc9222ecc21a231be95f7dcec6',
         'redirect' => 'http://127.0.0.1:8000/login/github/callback',
     ],
-
+    'google' => [
+        // 'client_id' => env('GOOGLE_CLIENT_ID'),         // Your Google Client ID
+        'client_id' =>'771834996179-8vjh9r8rnc8c615jc3ku2r1nqs18menh.apps.googleusercontent.com',
+        // 'client_secret' => env('GOOGLE_CLIENT_SECRET'), // Your Google Client Secret
+        'client_secret' =>'Mu6S_JZztNwPTZZzNjo5pMdJ',
+        'redirect' => 'http://127.0.0.1:8000/login/google/callback',
+    ],
 ];

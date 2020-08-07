@@ -8,7 +8,7 @@ one email only can register one platform (checke platform id exist or not to log
 ##  get user info
 - [x] github
 
-- [ ] google 
+- [x] google 
 
 - [ ] line
 

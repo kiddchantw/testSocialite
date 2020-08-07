@@ -40,33 +40,33 @@ class socialGithub extends Controller
             //return redirect('/login');
         }
 
-        // check if they're an existing user
+        // check user existed or note 
         $existUser = User::where('email', $userGithub->email)->first();
 
         if ($existUser) {
-            $existPlatformId = !empty($existUser->plaftform_id);
-            var_dump($existPlatformId);
-
-            if ($existPlatformId) {
+            $existPlatformId = $existUser->plaftform_id;
+            // var_dump($existPlatformId);
+            if ($existPlatformId == $userGithub->id) {
                 //login
-                 // auth()->login($existingUser, true);
-
+                echo "login info...<br>";
                 echo User::find($existUser->id);
+                // auth()->login($existingUser, true);
             } else {
-                //
-                //     // create a new user
-                $newUser                  = new User;
-                $newUser->name            = $userGithub->nickname;
-                $newUser->password        = "github";
-                $newUser->email           = $userGithub->email;
-                $newUser->plaftform       = "github";
-                $newUser->plaftform_id    = $userGithub->id;
-                $newUser->avatar          = $userGithub->avatar;
-                $newUser->save();
-                echo " create a new user";
+                echo " email is used :(";
             }
         } else {
-            echo " email is used";
+            // create a new user            
+            echo " create a new user ... <br>";
+            $newUser                  = new User;
+            $newUser->name            = $userGithub->nickname;
+            $newUser->password        = "github";
+            $newUser->email           = $userGithub->email;
+            $newUser->plaftform       = "github";
+            $newUser->plaftform_id    = $userGithub->id;
+            $newUser->avatar          = $userGithub->avatar;
+            $newUser->save();
+            echo " create a new user success <br>";
+
         }
 
         // return redirect()->to('/home');
