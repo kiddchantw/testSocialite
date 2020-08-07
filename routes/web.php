@@ -34,8 +34,6 @@ Route::get('/users/{id}/delete', function($id) {
     }else{
         echo "deltete fail";
     }
-    
-
 });
 
 //將用戶重新導向至OAuth提供程序

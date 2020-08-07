@@ -33,39 +33,42 @@ class socialGithub extends Controller
      */
     public function handleProviderCallback()
     {
-
-        // $user->token;
-
-        
-
         try {
-            $user = Socialite::driver('github')->user();
-
+            $userGithub = Socialite::driver('github')->user();
         } catch (\Exception $e) {
-            return redirect('/login');
+            echo "github api error";
+            //return redirect('/login');
         }
 
-        // dd($user->id);
+        // check if they're an existing user
+        $existUser = User::where('email', $userGithub->email)->first();
 
-        // dd($user->email);
-         // check if they're an existing user
-         $existingUser = User::where('email', $user->email)->first();
-         if($existingUser){
-            // log them in
-            // auth()->login($existingUser, true);
+        if ($existUser) {
+            $existPlatformId = !empty($existUser->plaftform_id);
+            var_dump($existPlatformId);
+
+            if ($existPlatformId) {
+                //login
+                 // auth()->login($existingUser, true);
+
+                echo User::find($existUser->id);
+            } else {
+                //
+                //     // create a new user
+                $newUser                  = new User;
+                $newUser->name            = $userGithub->nickname;
+                $newUser->password        = "github";
+                $newUser->email           = $userGithub->email;
+                $newUser->plaftform       = "github";
+                $newUser->plaftform_id    = $userGithub->id;
+                $newUser->avatar          = $userGithub->avatar;
+                $newUser->save();
+                echo " create a new user";
+            }
         } else {
-            // create a new user
-            $newUser                  = new User;
-            $newUser->name            = $user->nickname;
-            $newUser->password        = "github";
-            $newUser->email           = $user->email;
-            $newUser->plaftform        = "github";
-            $newUser->plaftform_id     = $user->id;
-            $newUser->avatar          = $user->avatar;
-            $newUser->save();
-
-            echo " create a new user";
+            echo " email is used";
         }
+
         // return redirect()->to('/home');
 
     }
