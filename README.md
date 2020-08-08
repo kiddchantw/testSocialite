@@ -5,12 +5,18 @@
 one email only can register one platform (checke platform id exist or not to login or register)
 
 
-##  get user info
+##  login on 3rd party  to get user info 
 - [x] github
 
 - [x] google 
 
 - [ ] line
+
+
+## blade.php test
+
+![image](https://github.com/kiddchantw/testSocialite/blob/master/public/loginPage.png?raw=true)
+
 
 
 
