@@ -26,6 +26,10 @@ Route::get('/users', function () {
     echo User::all();
 });
 
+Route::get('/usersall', function () {
+    return view('usersall');
+});
+
 
 Route::get('/users/{id}/delete', function($id) {
     if (User::find($id)){
@@ -36,17 +40,16 @@ Route::get('/users/{id}/delete', function($id) {
     }
 });
 
+
+
 //將用戶重新導向至OAuth提供程序
 Route::get('login/github', 'socialGithub@redirectToProvider');
-
-//在身份驗證之後接收來自提供程序的回調。
-Route::get('login/github/callback', 'socialGithub@handleProviderCallback');
-
-
-//將用戶重新導向至OAuth提供程序
 Route::get('login/google', 'socialGoogle@redirectToProvider');
 
 //在身份驗證之後接收來自提供程序的回調。
+Route::get('login/github/callback', 'socialGithub@handleProviderCallback');
 Route::get('login/google/callback', 'socialGoogle@handleProviderCallback');
+
+
 
 

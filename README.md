@@ -5,7 +5,7 @@
 one email only can register one platform (checke platform id exist or not to login or register)
 
 
-##  login on 3rd party  to get user info 
+## use  3rd party oauth application to get user info 
 - [x] github
 
 - [x] google 
