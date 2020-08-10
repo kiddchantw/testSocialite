@@ -66,6 +66,9 @@ class socialGithub extends Controller
             $newUser->avatar          = $userGithub->avatar;
             $newUser->save();
             echo " create a new user success <br>";
+            $loginUser = User::where('email', $userGithub->email)->first();
+            echo $loginUser;
+
 
         }
 
