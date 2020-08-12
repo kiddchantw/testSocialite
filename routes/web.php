@@ -51,5 +51,17 @@ Route::get('login/github/callback', 'socialGithub@handleProviderCallback');
 Route::get('login/google/callback', 'socialGoogle@handleProviderCallback');
 
 
+Route::get('refreshcaptcha', 'Auth\LoginController@refreshCaptcha');
+
+//->name('refresh_captcha');
 
 
+Route::get('/refreshcaptcha2', function () {
+    dd('/refreshcaptcha2');
+    return response()->json(['captcha'=> captcha_img()]);
+});
+
+
+Route::get('/captch', function () {
+    return view('captch');
+});

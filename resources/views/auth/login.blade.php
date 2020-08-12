@@ -94,25 +94,46 @@
 
                             <!-- google  button  use css-->
                             <div class="col-md-8 offset-md-4">
-                                <a href="login/google" >
+                                <a href="login/google">
 
-                                <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        
-                                <div class="google-btn">
-                                    <div class="google-icon-wrapper">
-                                        <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                                    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+                                    <div class="google-btn">
+                                        <div class="google-icon-wrapper">
+                                            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                                        </div>
+                                        <p class="btn-text"><b>Sign in with google</b></p>
                                     </div>
-                                    <p class="btn-text"><b>Sign in with google</b></p>
-                                </div>
                                 </a>
                             </div>
 
-                        
-                        </div>
-                    </form>
+                            <br></br>
+                            
+
+
+
+                                  <!-- mews captcha  -->
+
+        <div class="captcha">
+            <div class="form-group col-md-4">
+                <div class="captcha">
+                    <span>{!!captcha_img()!!}</span>
+
+                    <button type="button" class="btn btn-success"><i class="fa fa-refresh" id="refresh"></i></button>
+
                 </div>
             </div>
         </div>
+        <div class="form-group col-md-4">
+            <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+        </div>
+                        
+
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 </div>
 @endsection

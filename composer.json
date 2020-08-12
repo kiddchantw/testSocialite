@@ -17,6 +17,7 @@
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
+        "mews/captcha": "^3.1",
         "socialiteproviders/github": "^1.0",
         "socialiteproviders/google": "^3.1"
     },
