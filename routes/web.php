@@ -20,6 +20,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/users', function () {
@@ -51,17 +56,31 @@ Route::get('login/github/callback', 'socialGithub@handleProviderCallback');
 Route::get('login/google/callback', 'socialGoogle@handleProviderCallback');
 
 
+//captech
+//刷新
 Route::get('refreshcaptcha', 'Auth\LoginController@refreshCaptcha');
 
-//->name('refresh_captcha');
 
-
-Route::get('/refreshcaptcha2', function () {
-    dd('/refreshcaptcha2');
-    return response()->json(['captcha'=> captcha_img()]);
-});
 
 
 Route::get('/captch', function () {
     return view('captch');
 });
+
+
+
+Route::any('captcha-test', function() {
+    if (request()->getMethod() == 'POST') {
+        $rules = ['captcha' => 'required|captcha'];
+        $validator = validator()->make(request()->all(), $rules);
+        if ($validator->fails()) {
+            echo '<p style="color: #ff0000;">Incorrect!</p>';
+        } else {
+            echo '<p style="color: #00ff30;">Matched :)</p>';
+        }
+    }
+});
+
+
+
+Route::post('login2', 'Auth\LoginController@loginAjax')->name("login.ajax");

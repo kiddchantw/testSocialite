@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-     <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -12,10 +12,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <!-- 先註解掉 -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script>  -->
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous"> 
+    <!-- mews/captcha 加入 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" , rel="stylesheet" , integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" , crossorigin="anonymous">
 
 
     <!-- Fonts -->
@@ -23,14 +25,14 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet"> 
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 
     <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}"> -->
 
-    
+
 
 </head>
 
@@ -89,11 +91,11 @@
         <main class="py-4">
             @yield('content')
 
-       
+
         </main>
 
 
-       
+
 
     </div>
 </body>
@@ -110,9 +112,51 @@
             }
         });
     });
+
 </script>
 
 
+<script>
+  
+    function myFunction() {
+
+    //     $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
+        var x = document.getElementById("captcha").value;
+        document.getElementById("demo").innerHTML = x;
+
+        $.ajax({
+            type: 'post',
+            url: "{{ route('login.ajax') }}",
+            data: {
+                captcha: x
+            },
+
+            success: function(data) {
+                console.log(x);
+                // alert(data.success);
+                var data = JSON.parse(data);
+                alert(data.result);
+
+            },
+
+            error: function(jsonResponse) {
+                console.log(jsonResponse.status);
+                console.log(jsonResponse.responseText);
+                // var json = $.parseJSON(data);
+                // alert(json.error);
+ 
+                alert("失敗");
+            },
+        });
+    }
+</script>
+
+
+<p id="demo"></p>
 
 
 </html>
