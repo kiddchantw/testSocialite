@@ -39,7 +39,7 @@ class socialGoogle extends Controller
 
 
         if ($existUser) {
-            $existPlatformId = $existUser->plaftform_id;
+            $existPlatformId = $existUser->platform_id;
             if ($existPlatformId == $userGoogle->id) {
                 //login
                 $loginInfo =  User::find($existUser->id);

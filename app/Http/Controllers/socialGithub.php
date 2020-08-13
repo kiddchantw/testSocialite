@@ -42,9 +42,9 @@ class socialGithub extends Controller
 
         // check user existed or note 
         $existUser = User::where('email', $userGithub->email)->first();
-
+        
         if ($existUser) {
-            $existPlatformId = $existUser->plaftform_id;
+            $existPlatformId = $existUser->platform_id;
             // var_dump($existPlatformId);
             if ($existPlatformId == $userGithub->id) {
                 //login

@@ -39,7 +39,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        // $this->middleware('guest')->except('logout');
     }
 
 
@@ -53,22 +53,22 @@ class LoginController extends Controller
 
 
 
-    public function login(Request $request){
-        if (request()->getMethod() == 'POST') {
-            $rules = ['captcha' => 'required|captcha'];
-            $validator = validator()->make(request()->all(), $rules);
-            if ($validator->fails()) {
-                echo '<p style="color: #ff0000;">Incorrect!</p>';
+    // public function login(Request $request){
+    //     if (request()->getMethod() == 'POST') {
+    //         $rules = ['captcha' => 'required|captcha'];
+    //         $validator = validator()->make(request()->all(), $rules);
+    //         if ($validator->fails()) {
+    //             echo '<p style="color: #ff0000;">Incorrect!</p>';
 
 
-            } else {
-                echo '<p style="color: #00ff30;">Matched :)</p>';
-                /*
-                login正常流程
-                */
-            }
-        }
-    }
+    //         } else {
+    //             echo '<p style="color: #00ff30;">Matched :)</p>';
+    //             /*
+    //             login正常流程
+    //             */
+    //         }
+    //     }
+    // }
 
     
     public function loginAjax(Request $request){
