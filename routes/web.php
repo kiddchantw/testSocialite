@@ -36,6 +36,7 @@ Auth::routes();
 // Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 

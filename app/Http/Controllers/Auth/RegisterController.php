@@ -73,4 +73,24 @@ class RegisterController extends Controller
     }
 
 
+
+    public function store()
+    {
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        
+        // $user = User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        //     'platform' => "general",
+        // ]);
+        
+        // auth()->login($user);
+        
+        // return redirect()->to('/games');
+    }
 }
