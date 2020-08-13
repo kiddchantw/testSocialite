@@ -48,9 +48,13 @@ class socialGithub extends Controller
             // var_dump($existPlatformId);
             if ($existPlatformId == $userGithub->id) {
                 //login
-                echo "login info...<br>";
-                echo User::find($existUser->id);
+                // echo "login info...<br>";
+                // echo User::find($existUser->id);
                 // auth()->login($existingUser, true);
+                $loginInfo =  User::find($existUser->id);
+
+                return view('userdetail',['data'=>$loginInfo]);
+
             } else {
                 echo " email is used :(";
             }

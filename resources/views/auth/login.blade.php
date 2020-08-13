@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -9,14 +8,14 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}"> 
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+<!-- email 欄位 -->
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" >
+                                <input id="email" type="text" class="form-control">
 
                                 <!-- <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
@@ -27,12 +26,12 @@
                                 @enderror -->
                             </div>
                         </div>
-
-                        <div class="form-group row">
+<!-- password欄位 -->
+                        <div class="form-group row ">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="text" class="form-control" >
+                                <input id="password" type="text" class="form-control">
 
                                 <!-- <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
@@ -45,30 +44,33 @@
                         </div>
 
 
-                        <!-- mews captcha  -->
-                        <div class="form-group row">
+                        <!-- mews captcha                              -->
+                        <!-- <div class="col-md-6 "> -->
+                        <div class="col-md-6 offset-md-4">
+
                             <div class="captcha">
-                                <div class="form-group col-md-4">
                                     <div class="captcha">
                                         <span>{!!captcha_img('mini')!!}</span>
+                                        
                                         <button type="button" class="btn btn-success"><i class="fa fa-refresh" id="refresh"></i></button>
+                                       
+                                        <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-md-4">
-                                <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha"  >
-                            </div>
                         </div>
 
-
+                    
+                        <!-- login/forget passwd button -->
                         <div class="form-group row mb-0">
-                            <!-- login/forget passwd button -->
+                        <!-- <div class="col-md-6 offset-md-4"> -->
+
                             <div class="col-md-8 offset-md-4">
 
-    <!-- ajax 作法 失敗 -->
-    <!-- <input type="button"  class="btn btn-primary"  onclick="myFunction()" value="Login" > -->
-    <!-- <button type="button" class="btn btn-success"><i class="fa fa-refresh" id="loginAax"></i></button>						 --> 
-    <!-- <button class="btn btn-primary btn-loginAax" >login</button> -->
+                                <!-- ajax 作法 失敗 -->
+                                <!-- <input type="button"  class="btn btn-primary"  onclick="myFunction()" value="Login" > -->
+                                <!-- <button type="button" class="btn btn-success"><i class="fa fa-refresh" id="loginAax"></i></button>						 -->
+                                <!-- <button class="btn btn-primary btn-loginAax" >login</button> -->
 
 
 
@@ -139,7 +141,10 @@
                                     </div>
                                 </a>
                             </div>
+                            <br></br>                         
                             <br></br>
+                            <br></br>
+
                         </div>
                     </form>
                 </div>

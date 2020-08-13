@@ -13,6 +13,11 @@
             @foreach (json_decode($data, true) as $key => $value)
 
             {{ $key }} : {{$value}} <br>
+                @if($key =='avatar')
+                <img src="{{$value}}" class="img-thumbnail" alt="Responsive image" style="width: 50%; height: 50%;">
+                <br>
+
+                @endif
 
             @endforeach
         </div>
