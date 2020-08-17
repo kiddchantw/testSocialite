@@ -67,7 +67,7 @@ class LoginController extends Controller
             $rules = ['captcha' => 'required|captcha'];
             $validator = validator()->make(request()->all(), $rules);
             if ($validator->fails()) {
-                echo '<p style="color: #ff0000;">Incorrect!</p>';
+                echo '<p style="color: #ff0000;"> captcha Incorrect!</p>';
             } else {
                 // echo '<p style="color: #00ff30;">Matched :)</p>';
                 /*
@@ -81,7 +81,6 @@ class LoginController extends Controller
                     'password' => $request->password
                 );
                 if (Auth::attempt($userdata)) {
-                    // dd(Auth::user());
                     return view('userdetail');
                 } else {
                     dd("not Auth");
@@ -129,7 +128,25 @@ class LoginController extends Controller
     public function uploadImage(Request $request)
     {
         //前往upaload image 的 view
-        return view('uploadImage');
+        //return view('uploadImage');
+
+        // Auth::user()->id;
+        //m2 
+        $image = $request->image;
+        // $filename = $image->getClientOriginalName();      //保留原檔名
+        $userPhotoId = Auth::user()->id;
+
+//        $userPhotoId = (string)Auth::user()->id;
+        $filename = "$userPhotoId".'.png';
+
+        $destinationPath = 'public/user';  //設定路徑
+
+        // store the file
+        $imagePath  = $image->storeAs("$destinationPath", $filename);
+
+
+        User::where('id','=',$userPhotoId)->update(['avatar'=>$imagePath]);
+        return $imagePath;
     }
 
 
@@ -139,7 +156,6 @@ class LoginController extends Controller
         if (Session::has('users')) {
             // Session::flush();
             Session::forget('userinfo');
-
         }
 
         if (Auth::check()) {

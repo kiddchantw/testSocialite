@@ -37,7 +37,13 @@ Auth::routes();
 
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('upload', 'Auth\LoginController@uploadImage')->name('upload');
+
+Route::get('upload', function () {
+    return view('uploadImage');
+});
+
+Route::post('upload', 'Auth\LoginController@uploadImage')->name('upload');
+
 Route::get('profile', function () {
     return view('userdetail');
 })->name('profile');
