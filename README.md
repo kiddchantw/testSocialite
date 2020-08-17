@@ -5,7 +5,9 @@
 one email only can register one platform (checke platform id exist or not to login or register)
 
 
-## use  3rd party oauth application to get user info 
+## Login Page
+
+### use  3rd party oauth application to get user info 
 - [x] github
 
 - [x] google 
@@ -13,12 +15,20 @@ one email only can register one platform (checke platform id exist or not to log
 - [ ] line
 
 
-## blade.php test
+### blade.php test
 
+- [x] login page
 ![image](https://github.com/kiddchantw/testSocialite/blob/master/public/loginPage.png?raw=true)
 
 
 
+## After Login 
+
+- [x] profile 顯示圖片
+
+- [x] upload  非第三方登入後，可再上傳圖片
+
+- [ ] email 
 
 
 ## reference

@@ -153,10 +153,10 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        if (Session::has('users')) {
-            // Session::flush();
-            Session::forget('userinfo');
-        }
+        // if (Session::has('users')) {
+            Session::flush();
+            // Session::forget('userinfo');
+        // }
 
         if (Auth::check()) {
             // 這個使用者已經登入...
