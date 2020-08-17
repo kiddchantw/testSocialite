@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
 use App\User;
-use Auth;
+// use Auth;
 
+
+use Illuminate\Support\Facades\Session;
 
 class socialGithub extends Controller
 {
@@ -45,15 +47,19 @@ class socialGithub extends Controller
         
         if ($existUser) {
             $existPlatformId = $existUser->platform_id;
-            // var_dump($existPlatformId);
+         
+
+
             if ($existPlatformId == $userGithub->id) {
                 //login
                 // echo "login info...<br>";
                 // echo User::find($existUser->id);
                 // auth()->login($existingUser, true);
                 $loginInfo =  User::find($existUser->id);
+                // return view('userdetail',['data'=>$loginInfo]);
 
-                return view('userdetail',['data'=>$loginInfo]);
+                Session::put('userinfo', $loginInfo);
+                return view('userdetail');
 
             } else {
                 echo " email is used :(";

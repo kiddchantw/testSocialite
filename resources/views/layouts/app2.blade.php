@@ -62,6 +62,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profile') }}">{{ __('profile') }}</a>
+                        </li> 
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">{{ __('Logout') }}</a>
@@ -77,8 +80,6 @@
 
         <main class="py-4">
             @yield('content')
-
-
         </main>
 
 

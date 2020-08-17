@@ -37,7 +37,10 @@ Auth::routes();
 
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
+Route::get('upload', 'Auth\LoginController@uploadImage')->name('upload');
+Route::get('profile', function () {
+    return view('userdetail');
+})->name('profile');
 
 
 
@@ -76,26 +79,22 @@ Route::get('login/google/callback', 'socialGoogle@handleProviderCallback');
 //刷新
 Route::get('refreshcaptcha', 'Auth\LoginController@refreshCaptcha');
 
-
-
-
 Route::get('/captch', function () {
     return view('captch');
 });
 
 
-
-Route::any('captcha-test', function() {
-    if (request()->getMethod() == 'POST') {
-        $rules = ['captcha' => 'required|captcha'];
-        $validator = validator()->make(request()->all(), $rules);
-        if ($validator->fails()) {
-            echo '<p style="color: #ff0000;">Incorrect!</p>';
-        } else {
-            echo '<p style="color: #00ff30;">Matched :)</p>';
-        }
-    }
-});
+// Route::any('captcha-test', function() {
+//     if (request()->getMethod() == 'POST') {
+//         $rules = ['captcha' => 'required|captcha'];
+//         $validator = validator()->make(request()->all(), $rules);
+//         if ($validator->fails()) {
+//             echo '<p style="color: #ff0000;">Incorrect!</p>';
+//         } else {
+//             echo '<p style="color: #00ff30;">Matched :)</p>';
+//         }
+//     }
+// });
 
 
 
