@@ -21,7 +21,6 @@
     <br>
     <h1> @yield('title') </h1>
 
-
     <br>
     <br>
     @yield('content')

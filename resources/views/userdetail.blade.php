@@ -1,28 +1,26 @@
+@extends('layouts.app2')
+
+@section('content')
+
+
 <div class="container">
-    <div class="row col-sm-9">
+    <div class="row col-sm-9 jumbotron">
 
-        @extends('userinfo')
 
-        @section('pageTitle','Hello!')
+        @foreach (json_decode($data, true) as $key => $value)
 
-        @section('title','login done')
+        {{ $key }} : {{$value}} <br>
 
-        @section('content')
-        <div class="jumbotron">
-
-            @foreach (json_decode($data, true) as $key => $value)
-
-            {{ $key }} : {{$value}} <br>
-                @if($key =='avatar')
-                <img src="{{$value}}" class="img-thumbnail" alt="Responsive image" style="width: 50%; height: 50%;">
-                <br>
-
-                @endif
-
-            @endforeach
+        @if( $key =='avatar' )
+        <div class="row">
+            <img src="{{$value}}" class="img-thumbnail" alt="Responsive image" style="width:75%; height: 75%;">
         </div>
+        @endif
 
-        @endsection
+        @endforeach
     </div>
+</div>
 
 </div>
+
+@endsection
