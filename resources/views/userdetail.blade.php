@@ -22,44 +22,37 @@ $dataUser = json_decode($dataUser, true);
 
         {{ $key }} : {{$value}} <br>
 
-        <!-- @if(( $key =='platform') && ($value == null))
-            <img src="{{asset('/storage/' .'user/11.png')}}" class="img-thumbnail" alt="Responsive image"> 
-        @else   
-            <img src="{{ $dataUser['avatar'] }}" class="img-thumbnail" alt="Responsive image" style="width:75%; height: 75%;"> 
-        @endif -->
-        <!-- @if(( $key =='avatar') && ($value != null))
-            <div class="row">
-            <img src="{{asset('/storage/' .'user/11.png')}}" class="img-thumbnail" alt="Responsive image" style="width: 50%; height: 50%;"> 
-        </div>
-        @endif -->
         @endforeach
 
         <div class="row">
-            @if($dataUser['platform'] == null)
-          
-            <?php 
-            //<img src= "{{asset('/storage/' .'/user/11.png')}} class="img-thumbnail" alt="Responsive image"> 
-            //<img src="storage//user/11.png"  class="img-thumbnail" alt="Responsive image">
+            @if ($dataUser['avatar'] != null)
 
-            // $testURL = "storage/app/public/user/11.png"  no
-            // $testURL = "storage//user/11.png"; ok
-            // $testURL = "storage//user/".$dataUser['id'].".png";  ok
-            // $testURL = asset('/storage/' .'/user/11.png');
-            $strA = "user/".$dataUser['id'].".png";            //ok
-            $strb = explode("/",$dataUser['avatar'],2)[1];     //ok
+                @if ($dataUser['platform'] == null)
 
-            $testURL = asset('/storage/' .$strb);
+                    <?php
+                    //<img src= "{{asset('/storage/' .'/user/11.png')}} class="img-thumbnail" alt="Responsive image"> 
+                    //<img src="storage//user/11.png"  class="img-thumbnail" alt="Responsive image">
 
-            ?>
+                    // $testURL = "storage/app/public/user/11.png"  no
+                    // $testURL = "storage//user/11.png"; ok
+                    // $testURL = "storage//user/".$dataUser['id'].".png";  ok
+                    // $testURL = asset('/storage/' .'/user/11.png');
+                    $strA = "user/" . $dataUser['id'] . ".png";            //ok
+                    $strb = explode("/", $dataUser['avatar'], 2)[1];     //ok
 
-            <br>
-            <img src="{{ $testURL }}" class="img-thumbnail" alt="Responsive image">
+                    $testURL = asset('/storage/' . $strb);
 
-            @else
-           
-            <img src="{{ $dataUser['avatar'] }}" class="img-thumbnail" alt="Responsive image">
+                    ?>
+                <br>
+                <img src="{{ $testURL }}" class="img-thumbnail" alt="Responsive image">
 
+                @else
+
+                <img src="{{ $dataUser['avatar'] }}" class="img-thumbnail" alt="Responsive image">
+
+                @endif
             @endif
+
         </div>
 
 

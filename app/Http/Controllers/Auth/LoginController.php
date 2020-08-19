@@ -48,8 +48,9 @@ class LoginController extends Controller
     public function __construct()
     {
         // $this->middleware('guest')->except('logout');
-    }
+        // $this->middleware('verified')->except('showLoginForm','logout','refreshCaptcha');
 
+    }
 
 
     //更新captcha
@@ -81,9 +82,11 @@ class LoginController extends Controller
                     'password' => $request->password
                 );
                 if (Auth::attempt($userdata)) {
-                    return view('userdetail');
+                    // return view('userdetail');                    
+                    return $this->sendLoginResponse($request);
+
                 } else {
-                    dd("not Auth");
+                    dd("login error: email?? pw??");
                 }
                 // $request->session()->put('userinfo', $loginInfo);
 
@@ -95,7 +98,7 @@ class LoginController extends Controller
                 // $dataUser = $loginInfo;
                 // var_dump($dataUser);
                 // Session::put('userinfo', $loginInfo);
-                //              
+                //
                 //  return View::make('userdetail')->with($dataUser);
 
             }
@@ -103,6 +106,7 @@ class LoginController extends Controller
     }
 
 
+    //todo:用ajax登入未成功
     public function loginAjax(Request $request)
     {
 
@@ -127,16 +131,10 @@ class LoginController extends Controller
 
     public function uploadImage(Request $request)
     {
-        //前往upaload image 的 view
-        //return view('uploadImage');
-
-        // Auth::user()->id;
-        //m2 
         $image = $request->image;
         // $filename = $image->getClientOriginalName();      //保留原檔名
         $userPhotoId = Auth::user()->id;
 
-//        $userPhotoId = (string)Auth::user()->id;
         $filename = "$userPhotoId".'.png';
 
         $destinationPath = 'public/user';  //設定路徑
@@ -144,7 +142,7 @@ class LoginController extends Controller
         // store the file
         $imagePath  = $image->storeAs("$destinationPath", $filename);
 
-
+        //update db欄位
         User::where('id','=',$userPhotoId)->update(['avatar'=>$imagePath]);
         return $imagePath;
     }

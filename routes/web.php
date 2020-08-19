@@ -19,10 +19,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 // Authentication Routes...
-// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-// Route::post('login', 'Auth\LoginController@login');
+//Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+//oute::post('login', 'Auth\LoginController@login');//->middleware('verified');;
 // Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // // Registration Routes...
@@ -34,23 +33,28 @@ Auth::routes();
 // Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 // Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 // Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-
-
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+
+
+//加入信箱驗證
+Auth::routes(['verify' => true]);
+
+Route::get('home', 'HomeController@index')->middleware('verified');
+
+
+
 
 Route::get('upload', function () {
     return view('uploadImage');
 });
-
 Route::post('upload', 'Auth\LoginController@uploadImage')->name('upload');
 
 Route::get('profile', function () {
     return view('userdetail');
-})->name('profile');
+})->name('profile')->middleware('verified');;
 
 
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/users', function () {
     echo User::all();
@@ -103,5 +107,8 @@ Route::get('/captch', function () {
 // });
 
 
-
+//測試區
 Route::post('login2', 'Auth\LoginController@loginAjax')->name("login.ajax");
+
+
+

@@ -9,6 +9,10 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
+use Illuminate\Http\Request;
+
+
 class RegisterController extends Controller
 {
     /*
@@ -81,16 +85,24 @@ class RegisterController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        
+
         // $user = User::create([
         //     'name' => $data['name'],
         //     'email' => $data['email'],
         //     'password' => Hash::make($data['password']),
         //     'platform' => "general",
         // ]);
-        
+
         // auth()->login($user);
-        
+
         // return redirect()->to('/games');
     }
+
+    // //todo:
+    // public function register(Request $request)
+    // {
+    //     $this->validator($request->all())->validate();
+    //     $this->create($request->all());
+    //     return view('home');
+    // }
 }

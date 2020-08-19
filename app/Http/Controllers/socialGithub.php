@@ -42,12 +42,11 @@ class socialGithub extends Controller
             //return redirect('/login');
         }
 
-        // check user existed or note 
+        // check user existed or note
         $existUser = User::where('email', $userGithub->email)->first();
-        
+
         if ($existUser) {
             $existPlatformId = $existUser->platform_id;
-         
 
 
             if ($existPlatformId == $userGithub->id) {
@@ -65,7 +64,7 @@ class socialGithub extends Controller
                 echo " email is used :(";
             }
         } else {
-            // create a new user            
+            // create a new user
             echo " create a new user ... <br>";
             $newUser                  = new User;
             $newUser->name            = $userGithub->nickname;
