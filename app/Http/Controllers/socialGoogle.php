@@ -56,8 +56,8 @@ class socialGoogle extends Controller
             $newUser->name            = $userGoogle->nickname;
             $newUser->password        = "google";
             $newUser->email           = $userGoogle->email;
-            $newUser->plaftform       = "google";
-            $newUser->plaftform_id    = $userGoogle->id;
+            $newUser->platform       = "google";
+            $newUser->platform_id    = $userGoogle->id;
             $newUser->avatar          = $userGoogle->avatar;
             $newUser->save();
             echo " create a new user success <br>";

@@ -70,8 +70,8 @@ class socialGithub extends Controller
             $newUser->name            = $userGithub->nickname;
             $newUser->password        = "github";
             $newUser->email           = $userGithub->email;
-            $newUser->plaftform       = "github";
-            $newUser->plaftform_id    = $userGithub->id;
+            $newUser->platform       = "github";
+            $newUser->platform_id    = $userGithub->id;
             $newUser->avatar          = $userGithub->avatar;
             $newUser->save();
             echo " create a new user success <br>";
