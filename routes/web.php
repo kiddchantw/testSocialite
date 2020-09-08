@@ -18,10 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
+
 // Authentication Routes...
-//Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-//oute::post('login', 'Auth\LoginController@login');//->middleware('verified');;
+// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+//Route::post('login', 'Auth\LoginController@login');//->middleware('verified');;
 // Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // // Registration Routes...
@@ -34,7 +35,6 @@ Auth::routes();
 // Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 // Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
 
 
 //加入信箱驗證

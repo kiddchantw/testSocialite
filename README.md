@@ -42,6 +42,10 @@ one email only can register one platform (checke platform id exist or not to log
 
 
 
+## etc
+- [x] API: uploadimage 
+- [ ] API: 3rd party login
+- [ ] mail: serve
 
 ## reference
 https://laravel.com/docs/7.x/socialite

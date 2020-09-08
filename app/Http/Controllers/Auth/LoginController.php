@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Support\Facades\Storage;
 use Mews\Captcha\Captcha;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,10 @@ use Illuminate\Queue\SerializesModels;
 use View;
 
 use Illuminate\Support\Facades\Auth;
+
+
+use Symfony\Component\Console\Input\Input;
+
 
 class LoginController extends Controller
 {
@@ -82,7 +87,7 @@ class LoginController extends Controller
                     'password' => $request->password
                 );
                 if (Auth::attempt($userdata)) {
-                    // return view('userdetail');                    
+                    // return view('userdetail');
                     return $this->sendLoginResponse($request);
 
                 } else {
@@ -145,6 +150,38 @@ class LoginController extends Controller
         //update db欄位
         User::where('id','=',$userPhotoId)->update(['avatar'=>$imagePath]);
         return $imagePath;
+    }
+
+
+    public function uploadImageAPI(Request $request)
+    {
+
+        //m1 ok    http://127.0.0.1:8000/storage/user/cat.jpg
+        $image = $request->file('photo');
+//        $filename = "cat.jpg";
+//        $destinationPath = 'public/user';  //設定路徑
+//        $image->storeAs("$destinationPath", $filename);
+//        dd($image->getRealPath());
+
+//m1.1
+        $filename = $image->getClientOriginalName();
+        $uploadPic = Storage::disk('publicUser')->put($filename,file_get_contents($image->getRealPath()));
+        $photoURL = Storage::disk('publicUser')->url($filename);
+        //實際圖片網址
+       // "url": "http://localhost/storage/user/cat.png"
+
+
+
+        //m2 
+        //實際名稱沒修改成功   但回傳的$photoURL有改到 {"url":"http:\/\/127.0.0.1:8000\/catBB.jpg"}
+        //實際圖片網址
+        //http://127.0.0.1:8000/phpaXtvvM.png
+//        $filename = "catBB.jpg";
+//        $path = $request->file('photo')->move(public_path("/", $filename) );
+//        $photoURL = url('/'.$filename);
+//
+        return response()->json(['url'=> $photoURL],200);
+       
     }
 
 
