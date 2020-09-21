@@ -43,6 +43,16 @@ return [
 
     'disks' => [
 
+        //自訂
+           'publicUser' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/user'),
+            'url' => env('APP_URL').'/storage/user',
+            'visibility' => 'public',
+        ],
+
+        //以下為預設
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -52,13 +62,6 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
-
-        'publicUser' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/user'),
-            'url' => env('APP_URL').'/storage/user',
             'visibility' => 'public',
         ],
 
